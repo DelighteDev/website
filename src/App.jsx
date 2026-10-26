@@ -3,7 +3,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import RainCanvas from "./components/RainCanvas";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
-import BlogRedirect from "./pages/BlogRedirect";
 import ClicksPage from "./pages/ClicksPage";
 import HomePage from "./pages/HomePage";
 import InterestsPage from "./pages/InterestsPage";
@@ -47,7 +46,6 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/interests" element={<InterestsPage />} />
             <Route path="/clicks" element={<ClicksPage />} />
-            <Route path="/blog" element={<BlogRedirect />} />
             <Route path="/minecraft" element={<MinecraftPage />} />
             <Route path="/training-data" element={<TrainingDataPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

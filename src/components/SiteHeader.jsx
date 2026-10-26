@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { splashTexts } from "../data/home";
+import { BLOG_URL } from "../data/site";
 import { useSettings } from "../settings/SettingsContext";
 import { WavyLine } from "./WavyHeading";
 
@@ -153,7 +154,7 @@ export default function SiteHeader() {
             {pageLink("/training-data", "Training Data")}
             {pageLink("/interests", "What I Like")}
             <a
-              href="/blog"
+              href={BLOG_URL}
               className="menu-link"
               target="_blank"
               rel="noreferrer"

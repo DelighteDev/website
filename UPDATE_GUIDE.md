@@ -139,23 +139,24 @@ These steps keep the domain registered at Squarespace. DNS records are the inter
 2. Find this line:
 
    ```js
-   export const BLOG_URL = "https://delightedev-blog.blogspot.com";
+   export const BLOG_URL = "https://blog.delightedev.com";
    ```
 
 3. Replace only the address between the quotation marks with your real Blogspot address.
 4. Save the file and publish with the GitHub steps in section B.
-5. The build creates the Netlify redirect from this setting. You do not need to edit a second redirect file.
-6. Test `https://delightedev.com/blog`. It should immediately open the real blog.
+5. The Blog menu item links straight to this address in a new tab. There is no `/blog` page on the website.
+6. Open the website menu and choose **Blog**. It should open the real blog.
 
-### Optional later: use blog.delightedev.com
+### Blog custom domain: blog.delightedev.com
 
-1. In Blogger, go to **Settings > Publishing > Custom domain**.
-2. Enter `blog.delightedev.com` and save. Blogger will show the DNS records it needs.
-3. Blogger normally asks for a CNAME named `blog` pointing to `ghs.google.com`, plus a second security CNAME with values unique to your blog.
-4. Add both records where your domain DNS is managed. If you followed section C, that is **Squarespace > Domains > delightedev.com > DNS > DNS settings > Custom Records > Add Record**.
-5. Return to Blogger and finish the custom domain setup.
-6. After it connects, turn on **HTTPS availability** and **HTTPS redirect** in Blogger's HTTPS settings.
-7. Change `BLOG_URL` in `src/data/site.js` to `https://blog.delightedev.com` and publish. Your `/blog` link will then send people to that address.
+The blog uses `https://blog.delightedev.com`, and `BLOG_URL` in `src/data/site.js` already points to it. The main website is on Netlify at `delightedev.com`.
+
+The blog needs these DNS records in Squarespace:
+
+1. A CNAME named `blog` with data `ghs.google.com`.
+2. The second security CNAME shown in **Blogger > Settings > Publishing > Custom domain**. Its name and data are unique to your blog.
+
+In Blogger's HTTPS settings, keep **HTTPS availability** and **HTTPS redirect** on. If you ever move the blog to a different address, change only `BLOG_URL` in `src/data/site.js` and publish again.
 
 ## E. Copy-paste follow-up prompts for the AI
 
@@ -237,7 +238,7 @@ Please edit only src/data/photos.js. Remove ENTRY ID and move SECOND ENTRY ID so
 ### Blog
 
 ```text
-Please change only BLOG_URL in src/data/site.js to "NEW COMPLETE BLOGSPOT ADDRESS". Rebuild and confirm that the generated Netlify /blog redirect and the inside-site fallback use the new address.
+Please change only BLOG_URL in src/data/site.js to "NEW COMPLETE BLOG ADDRESS". Rebuild and confirm that the Blog menu item opens the new address in a new tab.
 ```
 
 ### Minecraft Server

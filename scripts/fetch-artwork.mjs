@@ -19,6 +19,7 @@ const games = [
   ["cuphead.webp", "Cuphead", "268910"],
   ["slay-the-princess.webp", "Slay the Princess", "1989270"],
   ["brawlhalla.webp", "Brawlhalla", "291550"],
+  ["life-is-strange.webp", "Life Is Strange", "319630"],
   ["broforce.webp", "Broforce", "274190"],
   ["the-kindergarten-series.webp", "The Kindergarten Series", "589590"],
   ["the-witcher-3-wild-hunt.webp", "The Witcher 3: Wild Hunt", "292030"],

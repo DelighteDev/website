@@ -23,6 +23,7 @@ export const otherGames = [
   { name: "Cuphead", image: "/images/interests/cuphead.webp" },
   { name: "Slay the Princess", image: "/images/interests/slay-the-princess.webp" },
   { name: "Brawlhalla", image: "/images/interests/brawlhalla.webp" },
+  { name: "Life Is Strange", image: "/images/interests/life-is-strange.webp" },
   { name: "Broforce", image: "/images/interests/broforce.webp" },
   { name: "The Kindergarten Series", image: "/images/interests/the-kindergarten-series.webp" },
   { name: "The Witcher 3: Wild Hunt", image: "/images/interests/the-witcher-3-wild-hunt.webp" },

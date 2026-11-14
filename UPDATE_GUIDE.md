@@ -293,7 +293,7 @@ All hidden-page code is inside `src/horror`. The existing Netlify `_redirects` r
 - Game/show setup and custom artwork settings: `src/horror/data/interests.js`
 - Gallery captions and custom photo settings: `src/horror/data/photos.js`
 - Broken Minecraft description and download address: `src/horror/data/minecraft.js`
-- Training Data message: `src/horror/pages/HorrorTrainingDataPage.jsx`
+- Hidden Training Data message: `src/horror/data/training.js`
 
 You can ask the AI:
 
@@ -331,6 +331,20 @@ I put FILE NAME in public/images/horror. Please use it as the custom scary image
    ```
 
 5. Captions are in the `captions` object in the same file. A missing caption stays blank.
+
+### Change the hidden Training Data message
+
+The Training Data page no longer shows a readable message. It shows only a broken line. The message is stored as base64 in `src/horror/data/training.js` and is placed in the page as an invisible comment. It can be found by inspecting the page in the browser, but not by reading the screen.
+
+To read the current message, copy the long string in `hiddenTrainingCipher` and decode it at `https://base64decode.org`, or ask the AI to decode it.
+
+To change the message, ask the AI:
+
+```text
+Please replace the base64 message in src/horror/data/training.js with this exact new message: "PASTE NEW MESSAGE HERE". Encode it as base64, keep it only in the page source as an invisible comment, and leave every normal cozy page unchanged.
+```
+
+Do not expect the new message to appear on the screen. That is intentional. If you want the message visible again, ask the AI to restore it as normal text.
 
 ### Add real writing to the locked horror blog
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import RainCanvas from "./components/RainCanvas";
 import SiteFooter from "./components/SiteFooter";
@@ -9,6 +9,9 @@ import InterestsPage from "./pages/InterestsPage";
 import MinecraftPage from "./pages/MinecraftPage";
 import TrainingDataPage from "./pages/TrainingDataPage";
 import { useSettings } from "./settings/SettingsContext";
+import { isHorrorPath } from "./horror/routes";
+
+const HorrorApp = lazy(() => import("./horror/HorrorApp"));
 
 function PageEffects() {
   const location = useLocation();
@@ -35,6 +38,16 @@ function PageEffects() {
 }
 
 export default function App() {
+  const location = useLocation();
+
+  if (isHorrorPath(location.pathname)) {
+    return (
+      <Suspense fallback={null}>
+        <HorrorApp />
+      </Suspense>
+    );
+  }
+
   return (
     <div className="site-shell">
       <RainCanvas />

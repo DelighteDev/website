@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArtworkGrid, ArtworkSpotlight } from "../components/Artwork";
 import WavyHeading from "../components/WavyHeading";
 import {
@@ -33,7 +34,21 @@ export default function InterestsPage() {
         <WavyHeading as="h2">
           Other Favourites (still play some of them to this day!)
         </WavyHeading>
-        <ArtworkGrid items={otherGames} />
+        <ArtworkGrid
+          items={otherGames}
+          renderCaption={(item) =>
+            item.name === "Doki Doki Literature Club!" ? (
+              <>
+                Doki Doki Literature Club
+                <Link className="secret-horror-entry" to="/ab0ut" aria-label="Doki Doki Literature Club!">
+                  !
+                </Link>
+              </>
+            ) : (
+              item.name
+            )
+          }
+        />
       </section>
 
       <section className="interest-section setup-section" aria-labelledby="setup-heading">

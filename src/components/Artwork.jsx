@@ -38,7 +38,7 @@ export function ArtworkSpotlight({ item }) {
   );
 }
 
-export function ArtworkGrid({ items }) {
+export function ArtworkGrid({ items, renderCaption }) {
   return (
     <div className="artwork-grid">
       {items.map((item) => (
@@ -46,7 +46,7 @@ export function ArtworkGrid({ items }) {
           <div className="artwork-frame">
             <Artwork item={item} />
           </div>
-          <figcaption>{item.name}</figcaption>
+          <figcaption>{renderCaption ? renderCaption(item) : item.name}</figcaption>
         </figure>
       ))}
     </div>

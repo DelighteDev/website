@@ -1,0 +1,543 @@
+.blood-rain-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  box-shadow: inset 0 0 180px rgba(78, 0, 13, 0.42);
+  pointer-events: none;
+}
+
+.horror-shell {
+  --bg: #090e0c;
+  --bg-deep: #030605;
+  --surface: #0e1512;
+  --surface-raised: #141c18;
+  --text: #c6cec2;
+  --muted: #859186;
+  --sage: #6d8e74;
+  --moss: #435c49;
+  --violet: #716377;
+  --lavender: #9a8ba0;
+  --line: #29372f;
+  --paper: #111713;
+  --paper-text: #b2b9ab;
+  --paper-line: #29352d;
+  --note-bg: #0c1210;
+  --button-bg: #5c735f;
+  --button-text: #e0e4d9;
+  --tile-bg: #0d1411;
+  --shadow: rgba(0, 0, 0, 0.48);
+  position: relative;
+  background: #030605;
+  color: var(--text);
+}
+
+.horror-content {
+  background: linear-gradient(180deg, #050806, #090e0c 34rem);
+}
+
+.horror-main {
+  position: relative;
+  z-index: 2;
+}
+
+.horror-header h1,
+.horror-header .site-brand {
+  text-shadow: 1px 0 rgba(107, 132, 111, 0.14);
+}
+
+.horror-splash {
+  color: #829486;
+  animation: horror-splash-jitter 7s steps(1, end) infinite;
+}
+
+@keyframes horror-splash-jitter {
+  0%, 91%, 94%, 100% { transform: rotate(-2deg) translate(0, 0); }
+  92% { transform: rotate(-2deg) translate(-2px, 1px); }
+  93% { transform: rotate(-1deg) translate(2px, -1px); }
+}
+
+.horror-header .menu-link:hover {
+  color: #a4b4a5;
+}
+
+.horror-about-copy .mutating-paragraph {
+  margin: 0 0 28px;
+}
+
+.mutating-word {
+  color: inherit;
+  transition: color 900ms ease;
+}
+
+.selection-ghost {
+  margin: 0 0 28px;
+  color: var(--bg);
+  font-size: 0.84rem;
+  line-height: 1.4;
+  user-select: text;
+}
+
+.selection-ghost::selection {
+  background: #020403;
+  color: #d6e3d1;
+}
+
+.horror-thought-spoiler {
+  border-left-color: #4f7658;
+  background: #0b110e;
+}
+
+.horror-thought-spoiler .thought-content p {
+  margin: 0 0 16px;
+  line-height: 1.75;
+}
+
+.horror-thought-spoiler .thought-content p:last-child {
+  margin-bottom: 0;
+}
+
+.horror-thought-spoiler .reveal-green {
+  color: #78a984;
+}
+
+.horror-thought-spoiler .reveal-light {
+  color: #c0d9b9;
+}
+
+.delayed-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 18px;
+  height: 24px;
+  color: #a9b6aa;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 2s ease;
+}
+
+.delayed-cursor[data-active="true"] {
+  opacity: 0.14;
+}
+
+.delayed-cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.corner-presence {
+  position: fixed;
+  right: -22px;
+  bottom: -12px;
+  z-index: 800;
+  width: 190px;
+  animation: corner-arrive 6s ease both;
+}
+
+.corner-face {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0.52;
+  transition: opacity 1.8s ease;
+}
+
+.corner-face:hover {
+  opacity: 0.82;
+}
+
+.corner-face svg {
+  display: block;
+  width: 100%;
+}
+
+.corner-smile {
+  transform-origin: center;
+  animation: smile-tremor 0.19s steps(2, end) infinite;
+}
+
+.corner-last-words {
+  position: absolute;
+  right: 30px;
+  bottom: 35px;
+  width: 150px;
+  margin: 0;
+  color: #9aa79a;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-align: right;
+  animation: last-words 7s ease forwards;
+}
+
+@keyframes corner-arrive {
+  from { opacity: 0; transform: translate(24px, 12px); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes smile-tremor {
+  0% { transform: translate(0, 0) scaleY(1); }
+  50% { transform: translate(0.6px, -0.5px) scaleY(1.025); }
+  100% { transform: translate(-0.4px, 0.4px) scaleY(0.985); }
+}
+
+@keyframes last-words {
+  0%, 45% { opacity: 0.75; }
+  100% { opacity: 0; }
+}
+
+.false-bottom-void {
+  position: relative;
+  z-index: 3;
+  height: 160vh;
+  background: #000;
+}
+
+.false-bottom-void p {
+  position: absolute;
+  right: 0;
+  bottom: 9px;
+  left: 0;
+  margin: 0;
+  color: #3f4942;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+/* The alternate theme deliberately removes readable contrast. */
+:root[data-theme="horror-void"] {
+  --text: #080808;
+  --muted: #000;
+  --sage: #080808;
+  --violet: #080808;
+  --lavender: #080808;
+  --line: #080808;
+  color: #080808;
+  background: #050706;
+}
+
+.horror-void-mode,
+.horror-void-mode .horror-content {
+  --text: #080808;
+  --muted: #000;
+  --sage: #080808;
+  --violet: #080808;
+  --lavender: #080808;
+  --line: #080808;
+  --paper-text: #080808;
+  background: #0b100e;
+  color: #080808;
+}
+
+.void-warning {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1200;
+  width: 100%;
+  padding: 24px;
+  color: #d8e0d4;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: center;
+  transform: translate(-50%, -50%) rotate(-1deg);
+  pointer-events: none;
+}
+
+/* Corrupted game and show covers. */
+.corrupted-frame {
+  border-color: #2d3830;
+  background: #090d0b;
+  box-shadow: 5px 7px 0 rgba(0, 0, 0, 0.6);
+}
+
+.corrupted-frame::after {
+  background: #242d27;
+  opacity: 0.48;
+}
+
+.corrupted-artwork {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: #020403;
+}
+
+.corrupted-artwork canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.corruption-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.24) 4px,
+    rgba(107, 16, 26, 0.09) 5px
+  );
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.corrupted-artwork.is-near canvas {
+  animation: cover-tear 0.17s steps(2, end) infinite;
+  filter: contrast(1.35) brightness(0.8);
+}
+
+.corrupted-artwork.is-near .corruption-scanlines {
+  opacity: 0.75;
+}
+
+@keyframes cover-tear {
+  0% { transform: translate(0, 0); clip-path: inset(0); }
+  33% { transform: translate(-3px, 1px); clip-path: inset(3% 0 0 0); }
+  66% { transform: translate(3px, -1px); clip-path: inset(0 0 4% 0); }
+  100% { transform: translate(0, 0); clip-path: inset(0); }
+}
+
+.peripheral-face {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.corrupted-name-tile {
+  border-color: #4c5f50;
+  background: #080d0a;
+}
+
+.horror-interests .artwork-item figcaption,
+.horror-interests .artwork-spotlight h3 {
+  color: #9aa89b;
+}
+
+.horror-interests .setup-list {
+  border-left-color: #455f4a;
+  background: #0c130f;
+}
+
+/* Procedural photographs and the slow lightbox. */
+.horror-photo-frame {
+  border-color: #28332c;
+  background: #101511;
+  color: #a7b0a3;
+  box-shadow: 7px 8px 0 rgba(0, 0, 0, 0.58);
+}
+
+.horror-photo-frame:nth-child(3n + 1) { transform: rotate(-1.8deg); }
+.horror-photo-frame:nth-child(3n + 2) { transform: rotate(1.4deg); }
+.horror-photo-frame:nth-child(4n) { transform: rotate(-2.5deg); }
+
+.procedural-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #030605;
+  object-fit: cover;
+}
+
+.horror-lightbox {
+  background: rgba(1, 3, 2, 0.985);
+}
+
+.horror-lightbox-photo {
+  position: relative;
+  align-self: center;
+  transition: none;
+  transform: scale(1);
+}
+
+.horror-lightbox-photo .procedural-photo {
+  width: auto;
+  max-width: min(78vw, 660px);
+  height: auto;
+  max-height: calc(100vh - 225px);
+  padding: 6px;
+  background: #0b100d;
+  object-fit: contain;
+}
+
+.horror-lightbox-photo.is-creeping {
+  transform: scale(1.065);
+  transition: transform 24s linear;
+}
+
+.lightbox-hidden-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.horror-lightbox-photo.is-creeping .lightbox-hidden-face {
+  opacity: 0.28;
+  transition: opacity 22s linear;
+}
+
+.lightbox-close.is-slipping {
+  transform: translate(-9px, 3px) rotate(-2deg);
+}
+
+/* Abandoned server and broken clue. */
+.horror-minecraft .minecraft-pattern {
+  opacity: 0.22;
+}
+
+.horror-minecraft .server-ip-section {
+  border-color: #4c624f;
+  box-shadow: 7px 7px 0 #362c38;
+}
+
+.horror-minecraft .server-description p:last-child {
+  color: #9db9a0;
+}
+
+.horror-training-message {
+  width: min(760px, 100%);
+  color: #78a984;
+}
+
+.horror-training-message h1 {
+  margin: 0;
+  color: #9fc6a5;
+  font-size: clamp(1.15rem, 3.2vw, 1.85rem);
+  letter-spacing: -0.015em;
+  line-height: 1.55;
+}
+
+.horror-training-message svg {
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin-top: 15px;
+  fill: none;
+  stroke: #78a984;
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+
+.horror-training-message svg path + path {
+  stroke: #c0d9b9;
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+/* Locked blog. */
+.horror-blog-lock {
+  width: min(500px, 100%);
+  margin: 0 auto;
+}
+
+.blog-lock-note {
+  margin: -30px 0 38px;
+  color: #718477;
+  font-size: 0.9rem;
+}
+
+.blog-lock-form {
+  display: grid;
+  gap: 12px;
+  padding: 25px;
+  border: 1px solid #2b3a30;
+  background: #080d0a;
+}
+
+.blog-lock-form label {
+  margin-top: 8px;
+  color: #8e9f90;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.blog-lock-form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #3a4d3f;
+  border-radius: 0;
+  outline: 0;
+  background: #030605;
+  color: #b5c7b5;
+  font: inherit;
+  letter-spacing: 0.04em;
+}
+
+.blog-lock-form input:focus {
+  border-color: #76937b;
+}
+
+.blog-lock-form .text-button {
+  justify-self: start;
+  margin-top: 15px;
+}
+
+.blog-lock-error {
+  min-height: 1.6em;
+  margin: 8px 0 0;
+  color: #a6c5aa;
+  font-size: 0.86rem;
+}
+
+.horror-blog-entry {
+  width: min(740px, 100%);
+  margin: 0 auto;
+  color: #a6bda8;
+  line-height: 1.85;
+}
+
+@media (max-width: 600px) {
+  .corner-presence {
+    right: -42px;
+    width: 145px;
+  }
+
+  .corner-last-words {
+    right: 48px;
+    width: 115px;
+    font-size: 0.66rem;
+  }
+
+  .void-warning {
+    font-size: clamp(2.2rem, 13vw, 4.4rem);
+  }
+
+  .horror-lightbox-photo .procedural-photo {
+    max-width: 88vw;
+    max-height: 58vh;
+  }
+
+  .blog-lock-note {
+    margin-top: -22px;
+  }
+
+  .blog-lock-form {
+    padding: 19px;
+  }
+
+  .false-bottom-void p {
+    font-size: 0.65rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .delayed-cursor {
+    display: none;
+  }
+}

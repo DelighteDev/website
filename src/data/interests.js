@@ -14,7 +14,7 @@ export const otherGames = [
   { name: "Minecraft", image: "/images/interests/minecraft.webp" },
   { name: "Undertale", image: "/images/interests/undertale.webp" },
   { name: "To the Moon", image: "/images/interests/to-the-moon.webp" },
-  { name: "Doki Doki Literature Club", image: "/images/interests/doki-doki-literature-club.webp" },
+  { name: "Doki Doki Literature Club!", image: "/images/interests/doki-doki-literature-club.webp" },
   { name: "OneShot", image: "/images/interests/oneshot.webp" },
   { name: "Fran Bow", image: "/images/interests/fran-bow.webp" },
   { name: "Five Nights at Freddy's 2", image: "/images/interests/five-nights-at-freddys-2.webp" },

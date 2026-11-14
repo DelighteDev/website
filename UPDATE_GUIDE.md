@@ -280,3 +280,68 @@ Please change the first-visit default for the visual rain effect to ON OR OFF. K
 9. **The theme looks different after a reload:** The site remembers your last theme choice. Open the menu and use **Theme: dark** or **Theme: light** to change it.
 10. **The domain is not working yet:** Wait several hours before changing records again. Recheck the A and CNAME values in section C and Netlify's domain status.
 11. **You are stuck:** Ask the AI for help. Say which page or step failed, paste the exact error, and mention what you clicked. Do not share passwords, access tokens, or other private details.
+
+## G. Hidden horror pages
+
+The hidden pages are `/ab0ut`, `/1nterests`, `/cl1cks`, `/b10g`, `/m1necraft`, and `/tra1ning-data`. The normal website keeps its original addresses. The only visible change to the normal website is the exclamation mark after Doki Doki Literature Club on `/interests`.
+
+All hidden-page code is inside `src/horror`. The existing Netlify `_redirects` rule already lets these addresses work after a direct visit or refresh.
+
+### Change horror writing
+
+- About reveal and word swaps: `src/horror/data/home.js`
+- Game/show setup and custom artwork settings: `src/horror/data/interests.js`
+- Gallery captions and custom photo settings: `src/horror/data/photos.js`
+- Broken Minecraft description and download address: `src/horror/data/minecraft.js`
+- Training Data message: `src/horror/pages/HorrorTrainingDataPage.jsx`
+
+You can ask the AI:
+
+```text
+Please change only the hidden horror page named PAGE OR ADDRESS. Replace OLD EXACT TEXT with NEW EXACT TEXT. Do not change any normal cozy page or link.
+```
+
+### Use your own scary game or show image
+
+1. Put the image in `public/images/horror`. Create that folder if it does not exist. Use a simple filename such as `omori-scary.webp`.
+2. Open `src/horror/data/interests.js`.
+3. Find `customHorrorImages`. Add the exact game or show name and image address using this example:
+
+   ```js
+   "Omori": "/images/horror/omori-scary.webp",
+   ```
+
+4. The custom picture replaces the generated corruption for that entry. Leave the normal `src/data/interests.js` unchanged.
+
+Or ask the AI:
+
+```text
+I put FILE NAME in public/images/horror. Please use it as the custom scary image for EXACT GAME OR SHOW NAME in src/horror/data/interests.js. Do not change its normal cozy artwork.
+```
+
+### Use your own scary gallery photo
+
+1. Put the image in `public/images/horror`.
+2. Decide which of the 20 frames it should replace. They are numbered 1 to 20 from the top of the page.
+3. Open `src/horror/data/photos.js` and find `customHorrorPhotos`.
+4. Add the frame number and image address, for example:
+
+   ```js
+   1: "/images/horror/doorway.webp",
+   ```
+
+5. Captions are in the `captions` object in the same file. A missing caption stays blank.
+
+### Add real writing to the locked horror blog
+
+The unlocked page currently contains encrypted placeholder text. The real entry is not stored as readable text in the website code. Give the AI your new entry and use this prompt:
+
+```text
+Please replace the encrypted placeholder payload in src/horror/data/blogLock.js with this exact blog entry: "PASTE ENTRY HERE". Ask me for the current blog password in chat so you can encrypt it correctly. Do not save the password or unencrypted entry in UPDATE_GUIDE.md, a temporary project file, or any JavaScript data file.
+```
+
+The AI will create new encrypted text and IV value, then rebuild and test the lock. Do not put the password in this guide or commit it to GitHub.
+
+### Check and publish horror changes
+
+Run `npm run build`, then check both a normal page and a hidden page with `npm run dev`. Publish using the same GitHub steps in section B. The normal website must remain cozy, and the Blog menu on a normal page must still open the real blog.

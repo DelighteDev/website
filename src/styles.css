@@ -96,6 +96,14 @@ a {
   color: inherit;
 }
 
+.secret-horror-entry,
+.secret-horror-entry:hover,
+.secret-horror-entry:visited {
+  color: inherit;
+  text-decoration: none;
+  cursor: default;
+}
+
 img,
 svg,
 iframe {
@@ -1448,16 +1456,16 @@ main {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  *:not(.horror-shell):not(.horror-shell *),
+  *:not(.horror-shell):not(.horror-shell *)::before,
+  *:not(.horror-shell):not(.horror-shell *)::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
 
-  .splash-text {
+  .splash-text:not(.horror-splash) {
     animation: none;
     transform: rotate(-2deg);
   }

@@ -7,6 +7,9 @@ import {
   useRef,
   useState,
 } from "react";
+import { useLocation } from "react-router-dom";
+import { createHorrorAudio } from "../horror/audio";
+import { isHorrorPath } from "../horror/routes";
 
 const SettingsContext = createContext(null);
 
@@ -42,6 +45,8 @@ function useReducedMotion() {
 }
 
 export function SettingsProvider({ children }) {
+  const location = useLocation();
+  const horrorMode = isHorrorPath(location.pathname);
   const [theme, setTheme] = useState(() =>
     savedChoice("delightedev-theme") === "light" ? "light" : "dark",
   );
@@ -57,12 +62,14 @@ export function SettingsProvider({ children }) {
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // The hidden section owns its own dark and "???" themes.
+    if (horrorMode) return;
     document.documentElement.dataset.theme = theme;
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", theme === "dark" ? "#111b18" : "#e2e8e1");
     rememberChoice("delightedev-theme", theme);
-  }, [theme]);
+  }, [theme, horrorMode]);
 
   useEffect(() => {
     rememberChoice("delightedev-rain", rainPreference ? "on" : "off");
@@ -86,6 +93,7 @@ export function SettingsProvider({ children }) {
     gain.gain.setValueAtTime(gain.gain.value, now);
     gain.gain.linearRampToValueAtTime(0, now + 0.8);
     window.setTimeout(() => {
+      audio.dispose?.();
       try {
         source.stop();
       } catch {
@@ -105,6 +113,13 @@ export function SettingsProvider({ children }) {
 
       const context = new AudioContext();
       await context.resume();
+
+      if (horrorMode) {
+        audioRef.current = { context, ...createHorrorAudio(context), kind: "horror" };
+        setSoundPlaying(true);
+        setSoundPreference(true);
+        return;
+      }
 
       // Soft filtered noise makes rain without downloading an audio file.
       const seconds = 4;
@@ -146,7 +161,7 @@ export function SettingsProvider({ children }) {
       gain.connect(context.destination);
       source.start();
 
-      audioRef.current = { context, source, gain };
+      audioRef.current = { context, source, gain, kind: "cozy" };
       setSoundPlaying(true);
       setSoundPreference(true);
     } catch {
@@ -155,7 +170,7 @@ export function SettingsProvider({ children }) {
     } finally {
       setSoundBusy(false);
     }
-  }, [soundBusy]);
+  }, [soundBusy, horrorMode]);
 
   const toggleSound = useCallback(() => {
     if (soundPlaying) {
@@ -165,8 +180,15 @@ export function SettingsProvider({ children }) {
     }
   }, [soundPlaying, startSound, stopSound]);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    const expectedKind = horrorMode ? "horror" : "cozy";
+    if (audio && audio.kind !== expectedKind) stopSound();
+  }, [horrorMode, stopSound]);
+
   useEffect(
     () => () => {
+      audioRef.current?.dispose?.();
       audioRef.current?.context.close().catch(() => {});
       audioRef.current = null;
     },
@@ -178,7 +200,7 @@ export function SettingsProvider({ children }) {
       theme,
       toggleTheme: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
       reducedMotion,
-      rainActive: rainPreference && !reducedMotion,
+      rainActive: rainPreference && (!reducedMotion || horrorMode),
       rainPreference,
       toggleRain: () => setRainPreference((current) => !current),
       soundPreference,
@@ -189,6 +211,7 @@ export function SettingsProvider({ children }) {
     [
       theme,
       reducedMotion,
+      horrorMode,
       rainPreference,
       soundPreference,
       soundPlaying,

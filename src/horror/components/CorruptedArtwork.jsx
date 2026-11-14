@@ -16,14 +16,32 @@ function StaringFace() {
   return (
     <svg className="peripheral-face" viewBox="0 0 360 540" aria-hidden="true">
       <rect width="360" height="540" fill="#020303" />
-      <path d="M64 540c-24-144-9-351 65-421 38-37 96-34 128 9 62 83 64 285 40 412Z" fill="#171d1a" />
-      <path d="M75 220c40-50 91-49 125 4-36 35-91 34-125-4Z" fill="#c4c9bb" />
-      <path d="M209 218c29-38 69-36 91 7-30 28-65 25-91-7Z" fill="#c4c9bb" />
-      <ellipse cx="143" cy="222" rx="14" ry="34" fill="#030505" />
-      <ellipse cx="250" cy="220" rx="12" ry="34" fill="#030505" />
-      <path d="M89 382c55-38 135-37 190 5-36 76-66 108-99 103-39-5-65-44-91-108Z" fill="#010202" />
-      <path d="M108 391c44 17 94 18 147 3M124 421c37 12 76 12 113-2" stroke="#aab0a3" strokeWidth="5" opacity="0.55" />
-      <path d="M130 391l-4 50m34-45-2 68m37-66 1 66m34-73 4 49" stroke="#d3d5c8" strokeWidth="3" opacity="0.48" />
+      {/* Gaunt head shape with skin distortion */}
+      <g transform="rotate(-1.5, 180, 270)">
+        <path d="M58 540c-26-148-12-360 68-432 40-38 100-36 134 10 65 88 68 295 44 422Z" fill="#141a17" />
+        {/* Hollowed eye sockets */}
+        <ellipse cx="135" cy="215" rx="38" ry="30" fill="#050707" />
+        <ellipse cx="248" cy="212" rx="35" ry="31" fill="#050707" />
+        {/* Eye whites - too wide, staring */}
+        <path d="M100 218c16-28 58-30 72 0-18 24-56 26-72 0Z" fill="#c0c6b9" opacity="0.85" />
+        <path d="M215 213c14-26 54-28 67-1-16 22-52 25-67 1Z" fill="#c4c9bc" opacity="0.78" />
+        {/* Dilated pupils */}
+        <ellipse cx="140" cy="219" rx="16" ry="22" fill="#030505" />
+        <ellipse cx="247" cy="216" rx="14" ry="21" fill="#030505" />
+        {/* Pinprick reflections */}
+        <circle cx="134" cy="210" r="2.5" fill="#d0d5cb" opacity="0.5" />
+        <circle cx="241" cy="208" r="2" fill="#d0d5cb" opacity="0.4" />
+        {/* Mouth - stretched impossibly wide, showing teeth */}
+        <path d="M72 385c60-42 145-40 210 5-42 80-72 112-110 108-42-5-72-48-100-113Z" fill="#020303" />
+        <path d="M98 394c48 18 104 20 160 3M116 426c40 13 84 13 124-2" stroke="#aab0a3" strokeWidth="4.5" opacity="0.5" />
+        <path d="M118 394l-4 52m30-48-2 58m34-56 1 54m32-60 3 52m28-56 2 46" stroke="#c8cab8" strokeWidth="2.5" opacity="0.4" />
+        {/* Cheek creases from the too-wide grin */}
+        <path d="M68 378c-6-12-8-22-4-32" stroke="#2a3530" strokeWidth="2" opacity="0.35" fill="none" />
+        <path d="M288 372c5-13 6-24 2-33" stroke="#2a3530" strokeWidth="2" opacity="0.3" fill="none" />
+        {/* Under-eye hollows */}
+        <path d="M105 248c20 8 44 7 62-2" stroke="#060908" strokeWidth="4" opacity="0.45" fill="none" />
+        <path d="M222 244c18 7 38 6 55-3" stroke="#060908" strokeWidth="3.5" opacity="0.4" fill="none" />
+      </g>
     </svg>
   );
 }

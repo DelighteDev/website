@@ -160,6 +160,37 @@
   animation: smile-tremor 0.19s steps(2, end) infinite;
 }
 
+.corner-pupil-l {
+  animation: pupil-drift-l 4.5s ease-in-out infinite alternate;
+}
+
+.corner-pupil-r {
+  animation: pupil-drift-r 5.2s ease-in-out infinite alternate;
+}
+
+@keyframes pupil-drift-l {
+  0%, 70% { transform: translate(0, 0); }
+  80% { transform: translate(-0.6px, -0.4px); }
+  100% { transform: translate(0.3px, 0.2px); }
+}
+
+@keyframes pupil-drift-r {
+  0%, 65% { transform: translate(0, 0); }
+  78% { transform: translate(0.5px, -0.3px); }
+  100% { transform: translate(-0.4px, 0.3px); }
+}
+
+/* Occasional full-face micro-twitch */
+.corner-face svg {
+  animation: face-micro-twitch 8s steps(1, end) infinite;
+}
+
+@keyframes face-micro-twitch {
+  0%, 87%, 90%, 100% { transform: translate(0, 0) rotate(0); }
+  88% { transform: translate(0.7px, -0.4px) rotate(0.3deg); }
+  89% { transform: translate(-0.5px, 0.3px) rotate(-0.2deg); }
+}
+
 .corner-last-words {
   position: absolute;
   right: 30px;

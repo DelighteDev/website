@@ -118,12 +118,23 @@ export default function HorrorLightbox({ photos, selectedId, onClose, onSelect }
       <div className={`lightbox-photo horror-lightbox-photo ${creeping ? "is-creeping" : ""}`}>
         <ProceduralPhoto key={photo.id} photo={photo} large />
         <svg className="lightbox-hidden-face" viewBox="0 0 300 500" aria-hidden="true">
-          <path d="M38 500C17 362 32 116 114 37c42-41 103-33 137 17 54 80 50 306 21 446Z" fill="#5f6a61" />
-          <ellipse cx="108" cy="198" rx="34" ry="14" fill="#c0c5b9" />
-          <ellipse cx="205" cy="194" rx="29" ry="14" fill="#c0c5b9" />
-          <ellipse cx="109" cy="198" rx="8" ry="17" fill="#050706" />
-          <ellipse cx="204" cy="194" rx="7" ry="17" fill="#050706" />
-          <path d="M91 330c41-24 90-23 130 4-23 70-45 93-69 90-27-3-45-36-61-94Z" fill="#030504" />
+          <g transform="rotate(-2, 150, 250)">
+            <path d="M32 500C10 355 25 105 110 30c45-44 110-36 144 18 58 84 54 318 24 452Z" fill="#4a544d" opacity="0.7" />
+            {/* Sunken eye sockets */}
+            <ellipse cx="105" cy="190" rx="32" ry="24" fill="#030504" opacity="0.6" />
+            <ellipse cx="208" cy="186" rx="29" ry="25" fill="#030504" opacity="0.55" />
+            {/* Staring eyes */}
+            <path d="M78 192c12-22 46-24 56 0-14 18-44 20-56 0Z" fill="#b8bdb2" opacity="0.75" />
+            <path d="M183 187c10-20 42-22 52-1-12 17-42 19-52 1Z" fill="#bcc1b5" opacity="0.7" />
+            <ellipse cx="108" cy="192" rx="13" ry="17" fill="#040605" />
+            <ellipse cx="208" cy="188" rx="12" ry="16" fill="#040605" />
+            <circle cx="104" cy="186" r="2" fill="#c8cdc3" opacity="0.45" />
+            <circle cx="204" cy="182" r="1.6" fill="#c8cdc3" opacity="0.38" />
+            {/* Mouth - too wide */}
+            <path d="M68 340c48-28 100-27 150 4-28 72-52 98-80 95-30-3-50-38-70-99Z" fill="#020403" />
+            <path d="M86 348c36 14 80 15 124 2" stroke="#a0a69a" strokeWidth="4" opacity="0.45" />
+            <path d="M100 348l-2 40m26-38-1 48m30-46 0 45m28-50 2 42m24-46 1 36" stroke="#bbbfb2" strokeWidth="2" opacity="0.35" />
+          </g>
         </svg>
       </div>
       {photo.caption && (

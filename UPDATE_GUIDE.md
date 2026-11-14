@@ -315,9 +315,9 @@ The hidden pages share a set of quiet effects. They are deliberately slow, and t
 - The page occasionally freezes for 300 milliseconds.
 - Once per session, the page may scroll a short distance on its own when you have not touched anything for a while.
 - Very faint marks follow the mouse and fade after four seconds.
-- The browser tab icon changes, and the browser console prints three short messages.
+- The browser tab icon changes to a crimson red version of the main DelighteDev logo, and the browser console prints three short messages.
 - A quiet whisper texture is mixed into the horror sound. It stays near the edge of hearing and never becomes a loud scare.
-- The corner face breathes slowly, and the title has an irregular blinking cursor.
+- The corner face has realistic human eyes that track your mouse and glance around when idle, deeply shadowed parted teeth, a slow breathing motion, a 3-minute cooldown between sightings, and auto-retreats into hiding if not clicked. The title also has an irregular blinking cursor.
 - After you close a gallery photo, there is a small chance that a different caption changes.
 - On the third visit to `/ab0ut`, the social links move to the opposite side.
 
@@ -366,9 +366,9 @@ I put FILE NAME in public/images/horror. Please use it as the custom scary image
 
 ### Change the hidden Training Data message
 
-The Training Data page no longer shows a readable message. It shows a small status line reading `0 readable entries` above a broken line. The message is stored as base64 in `src/horror/data/training.js` and is placed in the page as an invisible comment. It can be found by inspecting the page in the browser, but not by reading the screen.
+The Training Data page shows a small status line reading `0 readable entries_` and the base64 encoded string displayed faintly across the dark background. It is also embedded in the page source as an HTML comment.
 
-To read the current message, copy the long string in `hiddenTrainingCipher` and decode it at `https://base64decode.org`, or ask the AI to decode it.
+To read the current message, copy the string in `hiddenTrainingCipher` and decode it at `https://base64decode.org`, or ask the AI to decode it.
 
 To change the message, ask the AI:
 

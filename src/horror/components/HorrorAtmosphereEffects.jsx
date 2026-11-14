@@ -25,7 +25,7 @@ function useFaviconAndConsole() {
       type: link.getAttribute("type"),
       sizes: link.getAttribute("sizes"),
     }));
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#090b0a"/><path d="M12 9h39l-8 46H17Z" fill="#45101a"/><path d="M19 15h25l-5 34H23Z" fill="#111713"/><path d="m8 52 17-25 6 12 12-27 13 19M31 0l-3 19 8 7-9 14 4 24" fill="none" stroke="#9a3642" stroke-width="2"/><path d="M16 29h12m10 2h12" stroke="#b6bdb0" stroke-width="3" opacity=".55"/></svg>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#24070c"/><path d="M21.2 16.4c-.4 9.7-.5 20.9-.1 31.1M21.1 16.8c5.7-.5 11.4-.8 15.5 1.4 6.4 3.3 10 7.8 9.8 14.4-.2 9.1-6.2 14.9-15.3 15-3.4.1-6.8-.1-10-.3" fill="none" stroke="#d9384c" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="49" cy="14" r="3" fill="#8f1f2d"/></svg>`;
     const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
     links.forEach((link) => {
       link.href = href;

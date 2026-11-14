@@ -188,6 +188,13 @@
   animation: corner-arrive 6s ease both;
 }
 
+.corner-presence.is-retreating {
+  opacity: 0;
+  transform: translate(28px, 32px);
+  transition: opacity 3.2s ease-in, transform 3.5s ease-in;
+  pointer-events: none;
+}
+
 .corner-face {
   display: block;
   width: 100%;
@@ -216,28 +223,30 @@
 }
 
 .corner-smile {
-  transform-origin: center;
+  transform-origin: 98px 175px;
   animation: smile-tremor 0.19s steps(2, end) infinite;
 }
 
-.corner-pupil-l {
-  animation: pupil-drift-l 4.5s ease-in-out infinite alternate;
+.corner-eye-pupil {
+  transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.4, 1);
 }
 
-.corner-pupil-r {
-  animation: pupil-drift-r 5.2s ease-in-out infinite alternate;
+.corner-blink-lid {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.06s ease;
 }
 
-@keyframes pupil-drift-l {
-  0%, 70% { transform: translate(0, 0); }
-  80% { transform: translate(-0.6px, -0.4px); }
-  100% { transform: translate(0.3px, 0.2px); }
+.corner-blink-lid.is-blinking {
+  opacity: 1;
 }
 
-@keyframes pupil-drift-r {
-  0%, 65% { transform: translate(0, 0); }
-  78% { transform: translate(0.5px, -0.3px); }
-  100% { transform: translate(-0.4px, 0.3px); }
+.corner-lash-top {
+  transition: transform 0.07s ease;
+}
+
+.corner-lash-top.is-blinking {
+  transform: translateY(6px);
 }
 
 /* Occasional full-face micro-twitch */
@@ -524,6 +533,29 @@
   font-family: monospace;
   font-size: 0.76rem;
   letter-spacing: 0.08em;
+}
+
+.training-cipher-display {
+  margin: 16px 0 10px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  letter-spacing: 0.09em;
+  word-break: break-all;
+  color: #0f1613;
+  opacity: 0.55;
+  transition: opacity 0.8s ease, color 0.8s ease;
+  user-select: all;
+}
+
+.training-cipher-display:hover {
+  opacity: 0.85;
+  color: #3b5443;
+}
+
+.training-cipher-display::selection {
+  background: #020403;
+  color: #92b89c;
 }
 
 .training-empty-note span {

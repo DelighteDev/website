@@ -15,8 +15,17 @@ import DelayedCursor from "../components/DelayedCursor";
 import MutatingParagraph from "../components/MutatingParagraph";
 import { horrorReveal } from "../data/home";
 
+function isThirdVisit() {
+  try {
+    return Number(localStorage.getItem("delightedev-horror-about-visits") || 0) >= 2;
+  } catch {
+    return false;
+  }
+}
+
 export default function HorrorAboutPage() {
   const [thoughtOpen, setThoughtOpen] = useState(false);
+  const [mirrored] = useState(isThirdVisit);
   const [forever, setForever] = useState(false);
   const introductionRef = useRef(null);
   const passedIntroduction = useRef(false);
@@ -39,7 +48,7 @@ export default function HorrorAboutPage() {
   }, []);
 
   return (
-    <section id="about" className="about-section page-section horror-about" aria-label="About">
+    <section id="about" className={`about-section page-section horror-about ${mirrored ? "third-visit" : ""}`} aria-label="About">
       <DelayedCursor />
       <div className="introduction horror-introduction" ref={introductionRef}>
         <div className="introduction-heading">

@@ -46,9 +46,48 @@ export function createHorrorAudio(context) {
   humGain.connect(master);
   hum.start();
 
+  // Filtered noise swells at speech-like intervals, just below clear hearing.
+  const whisperBuffer = context.createBuffer(1, context.sampleRate * 6, context.sampleRate);
+  const whisperSamples = whisperBuffer.getChannelData(0);
+  for (let index = 0; index < whisperSamples.length; index += 1) {
+    whisperSamples[index] = Math.random() * 2 - 1;
+  }
+  const whisperSource = context.createBufferSource();
+  whisperSource.buffer = whisperBuffer;
+  whisperSource.loop = true;
+  const whisperFilter = context.createBiquadFilter();
+  whisperFilter.type = "bandpass";
+  whisperFilter.frequency.value = 1650;
+  whisperFilter.Q.value = 0.75;
+  const whisperGain = context.createGain();
+  whisperGain.gain.value = 0;
+  const whisperPan = context.createStereoPanner();
+  whisperSource.connect(whisperFilter);
+  whisperFilter.connect(whisperGain);
+  whisperGain.connect(whisperPan);
+  whisperPan.connect(master);
+  whisperSource.start();
+
   const activeKnocks = new Set();
   let timer = null;
+  let whisperTimer = null;
   let disposed = false;
+
+  const scheduleWhisper = () => {
+    if (disposed || context.state === "closed") return;
+    const now = context.currentTime;
+    const duration = randomBetween(0.25, 0.95);
+    whisperGain.gain.cancelScheduledValues(now);
+    whisperGain.gain.setValueAtTime(whisperGain.gain.value, now);
+    if (Math.random() > 0.22) {
+      whisperFilter.frequency.setValueAtTime(randomBetween(1100, 2400), now);
+      whisperPan.pan.setValueAtTime(randomBetween(-0.65, 0.65), now);
+      whisperGain.gain.linearRampToValueAtTime(randomBetween(0.0008, 0.0026), now + duration * 0.35);
+      whisperGain.gain.linearRampToValueAtTime(0, now + duration);
+    }
+    whisperTimer = window.setTimeout(scheduleWhisper, randomBetween(650, 2100));
+  };
+  scheduleWhisper();
 
   const knock = (when, pan) => {
     const duration = 0.48;
@@ -108,6 +147,12 @@ export function createHorrorAudio(context) {
     dispose() {
       disposed = true;
       window.clearTimeout(timer);
+      window.clearTimeout(whisperTimer);
+      try {
+        whisperSource.stop();
+      } catch {
+        // The whisper layer may already be stopped.
+      }
       try {
         hum.stop();
       } catch {

@@ -127,7 +127,10 @@ export default function HorrorHeader({ voidMode, onToggleTheme }) {
     <header className={`site-header horror-header ${isHome ? "home-header" : "inner-header"}`}>
       {isHome ? (
         <div className="home-title-block">
-          <h1>The Delight Experience?</h1>
+          <h1>
+            The Delight Experience?
+            <span className="horror-title-cursor" aria-hidden="true">|</span>
+          </h1>
           <div className="splash-wrap">
             <p className="splash-text horror-splash">{splash}</p>
           </div>

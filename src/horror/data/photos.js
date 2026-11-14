@@ -3,7 +3,7 @@ const captions = {
   5: "There used to be people in this one.",
   8: "Who was standing by the door?",
   11: "I think this used to be my room.",
-  15: "The face won't stay still when I look away.",
+  15: "The hallway is longer when I look away.",
   19: "It has been raining since I got here.",
 };
 
@@ -20,7 +20,7 @@ export const horrorPhotos = Array.from({ length: 20 }, (_, index) => {
     image: customHorrorPhotos[number] || null,
     caption: captions[number] || "",
     alt: captions[number] || "A dark photograph you do not remember taking",
-    variant: index % 5,
+    variant: index % 10,
     seed: 731 + index * 977,
   };
 });

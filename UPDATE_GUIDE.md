@@ -292,6 +292,11 @@ All hidden-page code is inside `src/horror`. The existing Netlify `_redirects` r
 - About reveal and word swaps: `src/horror/data/home.js`
 - Game/show setup and custom artwork settings: `src/horror/data/interests.js`
 - Gallery captions and custom photo settings: `src/horror/data/photos.js`
+- Generated gallery scenes: `src/horror/photoScenes.js`
+- Corrupted game/show artwork treatments: `src/horror/corruptArtwork.js`
+- Slow background, scroll, and typing effects: `src/horror/components/HorrorAtmosphereEffects.jsx`
+- Faint mouse afterimages: `src/horror/components/MouseTrail.jsx`
+- Lightbox hidden details: `src/horror/components/HiddenPhotoDetail.jsx`
 - Broken Minecraft description and download address: `src/horror/data/minecraft.js`
 - Hidden Training Data message: `src/horror/data/training.js`
 
@@ -299,6 +304,33 @@ You can ask the AI:
 
 ```text
 Please change only the hidden horror page named PAGE OR ADDRESS. Replace OLD EXACT TEXT with NEW EXACT TEXT. Do not change any normal cozy page or link.
+```
+
+### How the subtle horror effects work
+
+The hidden pages share a set of quiet effects. They are deliberately slow, and they ignore the normal reduced-motion setting because the horror section is meant to feel wrong.
+
+- The background slowly warms and the body text slowly tightens after two minutes.
+- Returning to a hidden page restores your reading position, shifted by a small random amount.
+- The page occasionally freezes for 300 milliseconds.
+- Once per session, the page may scroll a short distance on its own when you have not touched anything for a while.
+- Very faint marks follow the mouse and fade after four seconds.
+- The browser tab icon changes, and the browser console prints three short messages.
+- A quiet whisper texture is mixed into the horror sound. It stays near the edge of hearing and never becomes a loud scare.
+- The corner face breathes slowly, and the title has an irregular blinking cursor.
+- After you close a gallery photo, there is a small chance that a different caption changes.
+- On the third visit to `/ab0ut`, the social links move to the opposite side.
+
+You do not need to edit these. If one feels too strong for you, ask the AI to soften that single effect and leave the others unchanged.
+
+### Change the generated gallery scenes
+
+The 20 gallery photos are drawn by the website, so they use no image files unless you add your own. They show empty corridors, stairs, rainy windows, woods, an elevator, and similar places. There are no faces.
+
+The scene order and the corruption patterns are controlled by `src/horror/data/photos.js`, `src/horror/photoScenes.js`, and `src/horror/corruptArtwork.js`. Ask the AI:
+
+```text
+Please change the gallery scene at frame NUMBER in src/horror/photoScenes.js to a DIFFERENT EMPTY PLACE. Keep every other scene, keep the gallery free of people and faces, and do not change any normal cozy page.
 ```
 
 ### Use your own scary game or show image
@@ -334,7 +366,7 @@ I put FILE NAME in public/images/horror. Please use it as the custom scary image
 
 ### Change the hidden Training Data message
 
-The Training Data page no longer shows a readable message. It shows only a broken line. The message is stored as base64 in `src/horror/data/training.js` and is placed in the page as an invisible comment. It can be found by inspecting the page in the browser, but not by reading the screen.
+The Training Data page no longer shows a readable message. It shows a small status line reading `0 readable entries` above a broken line. The message is stored as base64 in `src/horror/data/training.js` and is placed in the page as an invisible comment. It can be found by inspecting the page in the browser, but not by reading the screen.
 
 To read the current message, copy the long string in `hiddenTrainingCipher` and decode it at `https://base64decode.org`, or ask the AI to decode it.
 

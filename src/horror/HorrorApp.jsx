@@ -3,8 +3,10 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import RainCanvas from "../components/RainCanvas";
 import CornerFace from "./components/CornerFace";
 import FalseBottomVoid from "./components/FalseBottomVoid";
+import HorrorAtmosphereEffects from "./components/HorrorAtmosphereEffects";
 import HorrorHeader from "./components/HorrorHeader";
 import HorrorPageEffects from "./components/HorrorPageEffects";
+import MouseTrail from "./components/MouseTrail";
 import HorrorAboutPage from "./pages/HorrorAboutPage";
 import HorrorBlogPage from "./pages/HorrorBlogPage";
 import HorrorClicksPage from "./pages/HorrorClicksPage";
@@ -62,6 +64,7 @@ export default function HorrorApp() {
           onToggleTheme={() => setVoidMode((current) => !current)}
         />
         <HorrorPageEffects />
+        <HorrorAtmosphereEffects />
         <main id="main-content" className="horror-main">
           <Routes>
             <Route path={horrorRoutes.about} element={<HorrorAboutPage />} />
@@ -76,6 +79,7 @@ export default function HorrorApp() {
         <footer className="site-footer horror-footer">{"With <3, by DelighteDev"}</footer>
         {isAbout && <FalseBottomVoid />}
       </div>
+      <MouseTrail />
       <CornerFace />
       {voidMode && (
         <div className="void-warning" role="status">

@@ -318,51 +318,13 @@ The hidden pages share a set of quiet effects. They are deliberately slow, and t
 - The browser tab icon changes to a crimson red version of the main DelighteDev logo, and the browser console prints three short messages.
 - A quiet whisper texture is mixed into the horror sound. It stays near the edge of hearing and never becomes a loud scare.
 - The corner face has realistic human eyes that track your mouse and glance around when idle, deeply shadowed parted teeth, a slow breathing motion, a 3-minute cooldown between sightings, and auto-retreats into hiding if not clicked. The title also has an irregular blinking cursor.
-- After you close a gallery photo, there is a small chance that a different caption changes.
 - On the third visit to `/ab0ut`, the social links move to the opposite side.
 
 You do not need to edit these. If one feels too strong for you, ask the AI to soften that single effect and leave the others unchanged.
 
-### Change the generated gallery scenes
+### Horror gallery (/cl1cks)
 
-The 20 gallery photos are drawn by the website, so they use no image files unless you add your own. They show empty corridors, stairs, rainy windows, woods, an elevator, and similar places. There are no faces.
-
-The scene order and the corruption patterns are controlled by `src/horror/data/photos.js`, `src/horror/photoScenes.js`, and `src/horror/corruptArtwork.js`. Ask the AI:
-
-```text
-Please change the gallery scene at frame NUMBER in src/horror/photoScenes.js to a DIFFERENT EMPTY PLACE. Keep every other scene, keep the gallery free of people and faces, and do not change any normal cozy page.
-```
-
-### Use your own scary game or show image
-
-1. Put the image in `public/images/horror`. Create that folder if it does not exist. Use a simple filename such as `omori-scary.webp`.
-2. Open `src/horror/data/interests.js`.
-3. Find `customHorrorImages`. Add the exact game or show name and image address using this example:
-
-   ```js
-   "Omori": "/images/horror/omori-scary.webp",
-   ```
-
-4. The custom picture replaces the generated corruption for that entry. Leave the normal `src/data/interests.js` unchanged.
-
-Or ask the AI:
-
-```text
-I put FILE NAME in public/images/horror. Please use it as the custom scary image for EXACT GAME OR SHOW NAME in src/horror/data/interests.js. Do not change its normal cozy artwork.
-```
-
-### Use your own scary gallery photo
-
-1. Put the image in `public/images/horror`.
-2. Decide which of the 20 frames it should replace. They are numbered 1 to 20 from the top of the page.
-3. Open `src/horror/data/photos.js` and find `customHorrorPhotos`.
-4. Add the frame number and image address, for example:
-
-   ```js
-   1: "/images/horror/doorway.webp",
-   ```
-
-5. Captions are in the `captions` object in the same file. A missing caption stays blank.
+The `/cl1cks` page currently uses 20 "Photo coming soon" placeholder frames, matching the structure of the actual non-horror clicks page. If you want to add photos later, you can place image files in `public/images/horror` and configure them in `src/horror/data/photos.js`.
 
 ### Change the hidden Training Data message
 
